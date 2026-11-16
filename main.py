@@ -38,14 +38,13 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # ----------------------------------
 
 client = OpenAI(
-    base_url="https://router.huggingface.co/v1",
-    api_key=HF_TOKEN,
+    base_url="https://api.groq.com/openai/v1",
+    api_key=os.getenv("GROQ_API_KEY"),
     timeout=90.0,
     max_retries=1
 )
 
-MODEL = "deepseek-ai/DeepSeek-R1:fastest"
-
+MODEL = "openai/gpt-oss-120b"
 # ----------------------------------
 # FLASK PER RENDER
 # ----------------------------------
