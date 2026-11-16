@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Hugging Face Client Setup
 client = OpenAI(
-    baseURL="https://router.huggingface.co/v1",
+    base_url="https://router.huggingface.co/v1",
     api_key=HF_TOKEN,
 )
 
