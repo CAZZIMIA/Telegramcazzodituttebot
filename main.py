@@ -4,13 +4,15 @@ from flask import Flask
 from openai import OpenAI
 from threading import Thread
 
-# Configuration
+# # Configuration
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+HF_TOKEN = os.environ.get("HF_TOKEN")
+
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN mancante!")
 
 if not HF_TOKEN:
     raise ValueError("HF_TOKEN mancante!")
-
 bot = telebot.TeleBot(BOT_TOKEN)
 app = Flask(__name__)
 
