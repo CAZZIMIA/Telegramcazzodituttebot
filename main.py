@@ -17,7 +17,15 @@ client = OpenAI(
     api_key=HF_TOKEN,
 )
 
-@bot.message_handler(func=lambda message: True)
+@bot.message_handler(commands=['start'])
+def start_command(message):
+    bot.reply_to(
+        message,
+        "🤖 Ciao! Sono Cazzodituttebot!\n\n"
+        "Sono online e collegato a DeepSeek. "
+        "Scrivimi qualcosa per iniziare!"
+    )
+    print("Comando /start ricevuto!")
 def handle_message(message):
     try:
         # Prepare the conversation
@@ -41,7 +49,20 @@ def run_flask():
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
 if __name__ == "__main__":
-    # Start Flask in a separate thread
-    Thread(target=run_flask).start()
-    # Start Telegram bot
-    bot.infinity_polling()
+    print("Avvio Telegram bot...")
+
+    try:
+        me = bot.get_me()
+        print(f"Telegram collegato: @{me.username}")
+
+        Thread(target=run_flask, daemon=True).start()
+
+        print("Avvio polling Telegram...")
+        bot.infinity_polling(
+            skip_pending=True,
+            logger_level=20
+        )
+
+    except Exception as e:
+        print(f"ERRORE AVVIO BOT: {e}")
+        raise
