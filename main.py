@@ -19,13 +19,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-HF_TOKEN = os.getenv("HF_TOKEN")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN mancante nelle variabili Render")
 
-if not HF_TOKEN:
-    raise ValueError("HF_TOKEN mancante nelle variabili Render")
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY mancante nelle variabili Render")
 
 # ----------------------------------
 # TELEGRAM
